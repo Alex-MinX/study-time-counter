@@ -10,7 +10,13 @@ Vue.use(Vuex, {
 
 export const store = new Vuex.Store({
     state: {
-        user: null
+        user: null,
+        visControl: {
+            signup: false,
+            login: false,
+            main: false
+        },
+        dataFromFB: {}
     },
     getters: getters,
     mutations: mutations,

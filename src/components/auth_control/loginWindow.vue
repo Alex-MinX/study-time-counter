@@ -39,6 +39,10 @@
                                         <v-btn type="submit">
                                             Login
                                         </v-btn>
+
+                                        <v-container>
+                                            If you don't have an account, please SIGN UP or contact Admin
+                                        </v-container>
                                     </v-flex>
                                 </v-layout>
                             </form>

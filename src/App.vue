@@ -1,16 +1,13 @@
 <template>
 <v-app id="inspire">
-
+  <!--
     <v-navigation-drawer
       v-model="drawer"
       fixed
       app
     >
       <v-list dense>
-        <!--
-        <loginBtn></loginBtn>
-        <logoutBtn></logoutBtn>-->
-  
+
         <v-list-tile @click="signup">
             <v-list-tile-action>
                 <v-icon>account_box</v-icon>
@@ -42,25 +39,55 @@
       
       </v-list>
     </v-navigation-drawer>
+  -->
 
     <v-toolbar color="light blue" dark fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+      <!--<v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>-->
+
       <v-toolbar-title>Study time counter</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        light
+        @click="signup"
+        >
+        Sign up
+      </v-btn>
+
+      <v-btn
+        light
+        @click="login"
+        >
+        Login
+      </v-btn>
+
+      <v-btn
+        icon
+        @click="logout">
+        <v-icon>exit_to_app</v-icon>
+      </v-btn>
+
     </v-toolbar>
 
     <v-content>
-      <v-container fluid fill-height>
+      <v-container fluid fill-height grid-list-md>
         <v-layout
           justify-center
-          align-center
+          align-start
         >
           <signupWindow
-            v-if="signupShow"
+            v-if="visControl.signup"
           ></signupWindow>
 
           <loginWindow
-            v-if="loginShow"
+            v-if="visControl.login"
           ></loginWindow>
+
+          <mainWindow
+            v-if="visControl.main"
+          ></mainWindow>
+
         </v-layout>
       </v-container>
     </v-content>
@@ -79,6 +106,8 @@
 
 import signupWindow from './components/auth_control/signupWindow.vue'
 import loginWindow from './components/auth_control/loginWindow.vue'
+import mainWindow from './components/mainWindow/mainWindow.vue'
+
 import * as firebase from 'firebase';
 
 
@@ -95,17 +124,23 @@ export default {
   },
   components: {
     signupWindow,
-    loginWindow
+    loginWindow,
+    mainWindow
   },
   created () {
-    this.$store.dispatch('userStateObserver')
+    this.$store.dispatch('userStateObserver');
+  },
+  computed: {
+    visControl () {
+      return this.$store.getters.visControl
+    }
   },
   methods: {
     signup () {
-      this.signupShow = !this.signupShow;
+      this.$store.commit('signupVis')
     },
     login () {
-      this.loginShow = !this.loginShow;
+      this.$store.commit('loginVis')
     },
     logout () {
       this.$store.dispatch('logout');

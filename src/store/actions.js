@@ -1,9 +1,9 @@
 import * as firebase from 'firebase';
 
 export default {
-    signUserUp ({commit}, payload) {
+    signUserUp (context, payload) {
         firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-            .then(
+            .then(function() {
                 /*
                 user => {
                     const newUser = {
@@ -11,8 +11,9 @@ export default {
                     }
                     commit('setUser', newUser);
                 }*/
-                alert('you are successfully signed up! Please login now')
-            )
+                context.commit('loginVis');
+                alert('you are successfully signed up!')
+            })
             .catch(function(error) {
                 // Handle Errors here.
                 let errorCode = error.code;
@@ -49,26 +50,45 @@ export default {
             alert('An error happened, please try logout again');
         });
     },
-    userStateObserver (context, payload) {
+    userStateObserver ({commit, dispatch}, payload) {
         firebase.auth().onAuthStateChanged(function(user) {
             if (user) {
+                // if user is already logged in, directly show the main window
+                commit('mainVis');
+
                 // User is signed in.
-                console.log("userinfo: ", user);
                 const newUser = {
-                    displayName: user.displayName,
                     email: user.email,
-                    emailVerified: user.emailVerified,
-                    photoURL: user.photoURL,
-                    isAnonymous: user.isAnonymous,
                     uid: user.uid,
-                    providerData: user.providerData
                 }
-                context.commit('setUser', newUser);
+                commit('setUser', newUser);
+
+                dispatch('refDataFromFB');
                 // ...
             } else {
                 // User is signed out.
-                // ...
+                // if user not logged in or user click the log out, show the login window
+                commit('loginVis');
             }
+        });
+    },
+    addDataToFB (context, payload) {
+        let userId = context.state.user.uid;
+        firebase.database().ref('users/' + userId + '/' + payload.date).set(payload, function(error) {
+            if(error) {
+                // The write failed...
+                console.log("The write failed...")
+            } else {
+                // Data saved successfully!
+                console.log("Data saved successfully!")
+            }
+        });
+    },
+    refDataFromFB ({commit, state}) {
+        let userId = state.user.uid;
+        firebase.database().ref('users/' + userId).on('value', function(data) {
+            let dataObj = data.val();
+            commit('setDataFromFB', dataObj);
         });
     }
 }

@@ -5,6 +5,9 @@ import './plugins/vuetify'
 import { store } from './store/store';
 import * as firebase from 'firebase'
 
+import VueCalendarHeatmap from 'vue-calendar-heatmap'
+Vue.use(VueCalendarHeatmap)
+
 Vue.config.productionTip = false
 
 new Vue({
