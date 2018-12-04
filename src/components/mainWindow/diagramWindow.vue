@@ -1,15 +1,15 @@
 <template>
-        <v-flex xs12>
-            <v-card>
-                <displayStatistic :statistic="statistic"></displayStatistic>
-            </v-card>
-            <v-card>
-                <displayDiagram :data="data"></displayDiagram>
-            </v-card>
-            <v-card>
-                <displayUserInfo :userInfo="userInfo"></displayUserInfo>
-            </v-card>
-        </v-flex>
+    <div>
+        <v-card>
+            <displayStatistic :statistic="statistic"></displayStatistic>
+        </v-card>
+        <v-card>
+            <displayDiagram :data="data"></displayDiagram>
+        </v-card>
+        <v-card>
+            <displayUserInfo :userInfo="userInfo"></displayUserInfo>
+        </v-card>
+    </div>
 </template>
 
 <script>
@@ -66,18 +66,22 @@ export default {
                 // calculate total study hours
                 let total_study_hours = 0;
                 filData.forEach(function(a_day) {
-                    total_study_hours += parseInt(a_day.count);
+                    total_study_hours += parseFloat(a_day.count);
                 })
+                total_study_hours = (total_study_hours).toFixed(2);
 
                 // calculate average study hours
-                let average_study_hours = 0;
+                let not0day = 0;
                 filData.forEach(function(a_day) {
-                    average_study_hours = (total_study_hours / parseInt(filData.length)).toFixed(2);
+                    if (a_day.count != 0) {
+                        not0day += 1
+                    }
                 })
+                let average_study_hours = (total_study_hours / parseInt(not0day)).toFixed(2);
 
                 statistic = {
                     "Total study hours": total_study_hours + " h",
-                    "Average study hours": average_study_hours + " h"
+                    "Average study hours (On worked days)": average_study_hours + " h"
                 };
 
             } else {

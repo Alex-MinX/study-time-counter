@@ -14,9 +14,11 @@ export const store = new Vuex.Store({
         visControl: {
             signup: false,
             login: false,
-            main: false
+            main: false,
+            PP: true
         },
-        dataFromFB: {}
+        dataFromFB: {},
+        addDataToFBStatus: {status: false}
     },
     getters: getters,
     mutations: mutations,

@@ -39,13 +39,16 @@
                                         <v-btn type="submit">
                                             Login
                                         </v-btn>
-
-                                        <v-container>
-                                            If you don't have an account, please SIGN UP or contact Admin
-                                        </v-container>
                                     </v-flex>
                                 </v-layout>
                             </form>
+                        </v-container>
+                    </v-card-text>
+
+                    <v-card-text>
+                        <v-container>
+                            <v-icon>notification_important</v-icon>
+                                If you don't have an account, please <strong class="red--text">SIGN UP</strong> or <strong class="red--text">contact Administrator</strong>
                         </v-container>
                     </v-card-text>
                 </v-card>

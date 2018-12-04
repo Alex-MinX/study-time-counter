@@ -72,15 +72,23 @@ export default {
             }
         });
     },
-    addDataToFB (context, payload) {
-        let userId = context.state.user.uid;
+    addDataToFB ({state, commit}, payload) {
+        let userId = state.user.uid;
         firebase.database().ref('users/' + userId + '/' + payload.date).set(payload, function(error) {
             if(error) {
                 // The write failed...
                 console.log("The write failed...")
+                commit('setaddDataToFBStatus', {status: true, infoText: "ERROR: " + error.message + " | ERROR CODE: " + error.code});
+                setTimeout(function() {
+                    commit('setaddDataToFBStatus', {status: false, infoText: ""});
+                }, 3000)
             } else {
                 // Data saved successfully!
                 console.log("Data saved successfully!")
+                commit('setaddDataToFBStatus', {status: true, infoText: "SUCCESS: " + "Data saved successfully"});
+                setTimeout(function() {
+                    commit('setaddDataToFBStatus', {status: false, infoText: ""});
+                }, 3000)
             }
         });
     },

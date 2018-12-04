@@ -17,7 +17,13 @@ export default {
         state.visControl.signup = false;
         state.visControl.main = true;
     },
+    PPVis(state, payload) {
+        state.visControl.PP = !state.visControl.PP;
+    },
     setDataFromFB(state, data) {
         state.dataFromFB = data;
+    },
+    setaddDataToFBStatus(state, payload) {
+        state.addDataToFBStatus = payload;
     }
 }

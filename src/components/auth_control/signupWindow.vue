@@ -55,6 +55,13 @@
                             </form>
                         </v-container>
                     </v-card-text>
+
+                    <v-card-text>
+                        <v-container>
+                        <v-icon>notification_important</v-icon>
+                            You are strongly recommanded <strong class="red--text">NOT</strong> to use your real-world-password here. Eventhough your password won't be seen by the Administrator, but since it's only a small SPA, <strong class="red--text">it can not be guaranteed</strong> that there is no safety issue by the client side.
+                        </v-container>
+                    </v-card-text>
                 </v-card>
             </v-flex>
         </v-layout>

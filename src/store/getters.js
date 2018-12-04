@@ -7,5 +7,8 @@ export default {
     },
     getDataFromFB (state) {
         return state.dataFromFB
+    },
+    getaddDataToFBStatus (state) {
+        return state.addDataToFBStatus
     }
 }

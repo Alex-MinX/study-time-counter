@@ -44,9 +44,17 @@
     <v-toolbar color="light blue" dark fixed app>
       <!--<v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>-->
 
-      <v-toolbar-title>Study time counter</v-toolbar-title>
+      <v-toolbar-title class="headline">Study time counter <strong class="font-weight-thin caption">Alpha-Version v0.2</strong></v-toolbar-title>
 
       <v-spacer></v-spacer>
+
+      <v-btn
+        light
+        color="light-blue lighten-3"
+        @click="PP"
+        >
+        Privacy Policy
+      </v-btn>
 
       <v-btn
         light
@@ -74,8 +82,12 @@
       <v-container fluid fill-height grid-list-md>
         <v-layout
           justify-center
-          align-start
+          align-center
         >
+          <PPWindow
+            v-if="visControl.PP"
+          ></PPWindow>
+
           <signupWindow
             v-if="visControl.signup"
           ></signupWindow>
@@ -107,6 +119,7 @@
 import signupWindow from './components/auth_control/signupWindow.vue'
 import loginWindow from './components/auth_control/loginWindow.vue'
 import mainWindow from './components/mainWindow/mainWindow.vue'
+import PPWindow from './components/mainWindow/PPWindow.vue'
 
 import * as firebase from 'firebase';
 
@@ -115,9 +128,6 @@ export default {
   name: 'app',
   data: () => ({
     drawer: null,
-    signupShow: false,
-    loginShow: false,
-    logoutShow: false
   }),
   props: {
       source: String
@@ -125,7 +135,8 @@ export default {
   components: {
     signupWindow,
     loginWindow,
-    mainWindow
+    mainWindow,
+    PPWindow
   },
   created () {
     this.$store.dispatch('userStateObserver');
@@ -136,11 +147,14 @@ export default {
     }
   },
   methods: {
+    PP () {
+      this.$store.commit('PPVis');
+    },
     signup () {
-      this.$store.commit('signupVis')
+      this.$store.commit('signupVis');
     },
     login () {
-      this.$store.commit('loginVis')
+      this.$store.commit('loginVis');
     },
     logout () {
       this.$store.dispatch('logout');
