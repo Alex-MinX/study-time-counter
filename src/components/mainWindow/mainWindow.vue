@@ -34,9 +34,11 @@
             <v-flex xs4>
                 <v-text-field
                 v-model="time"
-                label="Time of study"
+                label="Time of study (required and min. step is 0.5)"
                 solo
                 type="number"
+                step="0.5"
+                suffix="h"
                 required
                 ></v-text-field>
             </v-flex>
@@ -44,7 +46,7 @@
             <v-flex xs4>
                 <v-text-field
                 v-model="description"
-                label="What did you do today?"
+                label="What did you do today? (optional)"
                 solo
                 ></v-text-field>
             </v-flex>
