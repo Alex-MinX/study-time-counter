@@ -8,15 +8,14 @@
                 <v-icon>bar_chart</v-icon>
 
                 <v-toolbar-title>Satistic</v-toolbar-title>
-
-                <v-spacer></v-spacer>
         </v-toolbar>
         
         <v-list two-line>
-            <v-layout>
-                <v-flex xs6
+            <v-layout row wrap>
+                <v-flex
                     v-for="(value, key) in statistic"
                     :key="key"
+                    xs4
                 >
                     <v-list-tile>
                         <v-list-tile-content>
