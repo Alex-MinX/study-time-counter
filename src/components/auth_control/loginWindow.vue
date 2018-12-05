@@ -50,6 +50,11 @@
                             <v-icon>notification_important</v-icon>
                                 If you don't have an account, please <strong class="red--text">SIGN UP</strong> or <strong class="red--text">contact Administrator</strong>
                         </v-container>
+
+                        <v-container>
+                            <v-icon>notification_important</v-icon>
+                                This app will be shortly removed to <a href="https://studytimecounter.firebaseapp.com/">https://studytimecounter.firebaseapp.com</a> for a better user experience. All the user data <strong class="red--text">WILL NOT BE DELETED</strong> and you can continue using this app in the new address. We appreciate your understanding. Please save the new address and support me.
+                        </v-container>
                     </v-card-text>
                 </v-card>
             </v-flex>

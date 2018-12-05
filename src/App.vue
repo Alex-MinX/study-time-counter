@@ -44,7 +44,7 @@
     <v-toolbar color="light blue" dark fixed app>
       <!--<v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>-->
 
-      <v-toolbar-title class="headline">Study time counter <strong class="font-weight-thin caption">Alpha-Version v0.2</strong></v-toolbar-title>
+      <v-toolbar-title class="headline">Study time counter <strong class="font-weight-thin caption">Alpha-Version v0.3</strong></v-toolbar-title>
 
       <v-spacer></v-spacer>
 

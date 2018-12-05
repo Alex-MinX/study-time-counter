@@ -58,8 +58,13 @@
 
                     <v-card-text>
                         <v-container>
-                        <v-icon>notification_important</v-icon>
-                            You are strongly recommanded <strong class="red--text">NOT</strong> to use your real-world-password here. Eventhough your password won't be seen by the Administrator, but since it's only a small SPA, <strong class="red--text">it can not be guaranteed</strong> that there is no safety issue by the client side.
+                            <v-icon>notification_important</v-icon>
+                                You are strongly recommanded <strong class="red--text">NOT</strong> to use your real-world-password here. Eventhough your password won't be seen by the Administrator, but since it's only a small SPA, <strong class="red--text">it can not be guaranteed</strong> that there is no safety issue by the client side.
+                        </v-container>
+                        
+                        <v-container>
+                            <v-icon>notification_important</v-icon>
+                                This app will be shortly removed to <a href="https://studytimecounter.firebaseapp.com/">https://studytimecounter.firebaseapp.com</a> for a better user experience. All the user data <strong class="red--text">WILL NOT BE DELETED</strong> and you can continue using this app in the new address. We appreciate your understanding. Please save the new address and support me.
                         </v-container>
                     </v-card-text>
                 </v-card>

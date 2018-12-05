@@ -5,6 +5,10 @@
     wrap
 >
     <v-flex xs8>
+        <v-container>
+            <v-icon>notification_important</v-icon>
+                This app will be shortly removed to <a href="https://studytimecounter.firebaseapp.com/">https://studytimecounter.firebaseapp.com</a> for a better user experience. All the user data <strong class="red--text">WILL NOT BE DELETED</strong> and you can continue using this app in the new address. We appreciate your understanding. Please save the new address and support me.
+        </v-container>
         <v-card>
             <v-container>
                 <form @submit.prevent="submit">
