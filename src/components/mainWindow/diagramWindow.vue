@@ -70,14 +70,28 @@ export default {
                 })
                 total_study_hours = (total_study_hours).toFixed(2);
 
-                // calculate average study hours on worked days
+                // calculate average study hours on worked days---------------------------------------
                 let not0day = 0;
                 filData.forEach(function(a_day) {
                     if (a_day.count != 0) {
                         not0day += 1
                     }
                 })
-                let average_study_hours = (total_study_hours / parseInt(not0day)).toFixed(2);
+                let average_study_hours_owd = (total_study_hours / parseInt(not0day)).toFixed(2);
+
+                // calculate average study hours -----------------------------------------------------
+                console.log("filData: ", filData);
+                //Get 1 day in milliseconds 
+                let one_day = 1000*60*60*24;
+                let reg_day = new Date(filData[0].date.slice(0, 4), filData[0].date.slice(5, 7) - 1, filData[0].date.slice(8, 10));
+                // Convert both dates to milliseconds
+                let date1_ms = reg_day.getTime();
+                let date2_ms = new Date().getTime();
+                let difference_ms = date2_ms - date1_ms; // Calculate the difference in milliseconds
+                let difference_day = Math.round(difference_ms / one_day); // Convert back to days and return
+                console.log("difference_day: ", difference_day);
+                let totalDays = filData.length;
+                let average_study_hours = (total_study_hours / difference_day).toFixed(2);
 
                 // calculate total study hour on the past 7 days -------------------------------------
                 let today = new Date();
@@ -144,13 +158,19 @@ export default {
                         }
                     })
                 })
+
+                // calculate the average study hours on the past 7 days---------------------------
+                let average_study_hours_l7d = (total_study_hours_l7d / 7).toFixed(2);
+
                 total_study_hours_l7d = (total_study_hours_l7d).toFixed(2);
                 //console.log("total_study_hours_l7d: ", total_study_hours_l7d);
 
                 statistic = {
-                    "Total study hours": total_study_hours + " h",
-                    "Total study hours on the past 7 days": total_study_hours_l7d + " h",
-                    "Average study hours (On worked days)": average_study_hours + " h"
+                    "Total study hours": total_study_hours + " h"
+                    , "Total study hours on the past 7 days": total_study_hours_l7d + " h"
+                    , "Average study hours on the past 7 days": average_study_hours_l7d + " h"
+                    , "Average study hours (on worked days)": average_study_hours_owd + " h"
+                    , "Average study hours (since day 1)": average_study_hours + " h"
                 };
             } else {
                 statistic = {"No Data available": ""}
