@@ -80,19 +80,21 @@ export default {
                 let average_study_hours_owd = (total_study_hours / parseInt(not0day)).toFixed(2);
 
                 // calculate average study hours -----------------------------------------------------
-                console.log("filData: ", filData);
-                //Get 1 day in milliseconds 
-                let one_day = 1000*60*60*24;
-                let reg_day = new Date(filData[0].date.slice(0, 4), filData[0].date.slice(5, 7) - 1, filData[0].date.slice(8, 10));
-                // Convert both dates to milliseconds
-                let date1_ms = reg_day.getTime();
-                let date2_ms = new Date().getTime();
-                let difference_ms = date2_ms - date1_ms; // Calculate the difference in milliseconds
-                let difference_day = Math.round(difference_ms / one_day); // Convert back to days and return
-                console.log("difference_day: ", difference_day);
-                let totalDays = filData.length;
-                let average_study_hours = (total_study_hours / difference_day).toFixed(2);
-
+                let average_study_hours;
+                if (filData.length != 0) {
+                    //Get 1 day in milliseconds
+                    let one_day = 1000*60*60*24;
+                    let reg_day = new Date(filData[0].date.slice(0, 4), filData[0].date.slice(5, 7) - 1, filData[0].date.slice(8, 10));
+                    // Convert both dates to milliseconds
+                    let date1_ms = reg_day.getTime();
+                    let date2_ms = new Date().getTime();
+                    let difference_ms = date2_ms - date1_ms; // Calculate the difference in milliseconds
+                    let difference_day = Math.round(difference_ms / one_day); // Convert back to days and return
+                    let totalDays = filData.length;
+                    average_study_hours = (total_study_hours / difference_day).toFixed(2);
+                } else {
+                    average_study_hours = 1;
+                }
                 // calculate total study hour on the past 7 days -------------------------------------
                 let today = new Date();
                 //console.log("today: ", today);
